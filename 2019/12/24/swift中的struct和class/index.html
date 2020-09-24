@@ -1,0 +1,125 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="keep to run"><title>swift中的struct和class | Run</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.4.0/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">swift中的struct和class</h1><a id="logo" href="/.">Run</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">swift中的struct和class</h1><div class="post-meta">Dec 24, 2019<span> | </span><span class="category"><a href="/categories/swift/">swift</a></span></div><div class="post-content"><h3 id="类和结构体"><a href="#类和结构体" class="headerlink" title="类和结构体"></a>类和结构体</h3><p>结构体和类作为一种通用而灵活的结构,你可以在其中定义常量, 变量, 函数.  </p>
+<a id="more"></a>
+<p>swift中的值类型</p>
+<ul>
+<li>struct, enum, tuple</li>
+<li>Int, Double, Float, String, Array, Dictionary, Set</li>
+</ul>
+<h4 id="类和结构体对比"><a href="#类和结构体对比" class="headerlink" title="类和结构体对比"></a>类和结构体对比</h4><p>swift中类和结构体有很多共同点:</p>
+<ul>
+<li><ol>
+<li>定义属性用于存储值</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>定义方法用于提供功能</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>定义下标操作用于通过下标语法访问它们的值</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>定义构造器用于设置初始值</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>通过扩展以增加默认实现之外的功能</li>
+</ol>
+</li>
+<li><ol start="6">
+<li>遵循协议以提供某种标准功能</li>
+</ol>
+</li>
+</ul>
+<p>而类还有以下功能</p>
+<ul>
+<li><ol>
+<li>继承, 允许一个类继承另一个类</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>类型转换允许在运行时检查和解释一个类实例的类型</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>析构器, 允许一个类实例释放任何其所被分配的资源</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>引用计数, 允许对一个类的多次引用</li>
+</ol>
+</li>
+</ul>
+<h4 id="定义语法"><a href="#定义语法" class="headerlink" title="定义语法"></a>定义语法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class SomeClass &#123;</span><br><span class="line">   	var value = 0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">struct SomeStruct &#123;</span><br><span class="line">   	var value = 0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let someClass = SomeClass()</span><br><span class="line">someClass.value = 1</span><br><span class="line">let someClass2 = someClass</span><br><span class="line">someClass.value = 2</span><br><span class="line">print(&quot; value in someClass2 is  \(someClass2.value)&quot;)</span><br><span class="line">       </span><br><span class="line">var someStruct = SomeStruct()</span><br><span class="line">someStruct.value = 1</span><br><span class="line">let someStruct2 = someStruct</span><br><span class="line">someStruct.value = 2</span><br><span class="line">print(&quot; value in someStruct2 is  \(someStruct2.value)&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//  value in someClass2 is  2</span><br><span class="line">	//	 value in someStruct2 is  1</span><br></pre></td></tr></table></figure>
+<p>对于值语义, 数据是直接保存在变量中; 对于引用语义, 数据保存在其他地方, 变量存储的是该数据的引用地址. 当我们访问数据时, 这种差异不一定很明显. 但是拷贝数据时就完全不一样了. 对于值语义, 你得到的是该数据的拷贝; 但是对于引用语义, 你得到的是该数据的引用地址拷贝.</p>
+<p>####值类型和引用类型的嵌套</p>
+<p>嵌套值类型和引用类型有四种情况</p>
+<ul>
+<li><ol>
+<li>包含其他引用类型的引用类型，这没什么特别的。如果持有内部或外部值的引用，就可以修改这个值。改动会同步到所有持有者。</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>包含其他值类型的值类型，这样做的结果是一个更庞大的值类型。当内部值是外部值的一部分时，如果你将外部值存储到某个新地方，整个值类型都会被拷贝，包括内部值。如果你将内部值储存到新地方，那就只拷贝内部值。</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>包含值类型的引用类型，被引用的值会变大。外部值的引用可以操作整个对象，包括内部值。修改内部值时，外部值引用的持有者都会同步改动。如果你将内部值储存到新地方，它会被拷贝。</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>包含引用类型的值类型，这就有点复杂了。你可能会遇到意料之外的行为。这有利有弊，取决于你的使用方式。如果你将一个引用类型放到值类型中，然后拷贝这个值类型到一个新地方，拷贝中的内部对象的引用值是相同的，它们都指向相同的地方。</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class SomeClass &#123;</span><br><span class="line">   	var value = 0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">struct SomeStruct &#123;</span><br><span class="line">   	var value = 0</span><br><span class="line">   	var someClass = SomeClass()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var someStruct = SomeStruct()</span><br><span class="line">let someStruct2 = someStruct</span><br><span class="line">someStruct.value = 1</span><br><span class="line">someStruct.someClass.value = 2</span><br><span class="line">print(&quot; someStruct2.value is \(someStruct2.value)  ~~~  someStruct2.someClass.value is  \(someStruct2.someClass.value)&quot;)</span><br><span class="line"></span><br><span class="line">// someStruct2.value is 0  ~~~  someStruct.someClass.value is  2</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class SomeClass &#123;</span><br><span class="line">   	var value = 0</span><br><span class="line">   	var someStruct = SomeStruct()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">struct SomeStruct &#123;</span><br><span class="line">   	var value = 0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let someClass = SomeClass()</span><br><span class="line">let someClass2 = someClass</span><br><span class="line">       </span><br><span class="line">someClass.value = 1</span><br><span class="line">someClass.someStruct.value = 2</span><br><span class="line">print(&quot; someClass2.value is \(someClass2.value)  ~~~  someStruct2.someClass.value is  \(someClass2.someStruct.value)&quot;)</span><br><span class="line"></span><br><span class="line">// someClass2.value is 1  ~~~  someStruct2.someClass.value is  2</span><br></pre></td></tr></table></figure>
+<h3 id="struct作为数据模型的注意事项"><a href="#struct作为数据模型的注意事项" class="headerlink" title="struct作为数据模型的注意事项"></a>struct作为数据模型的注意事项</h3><h5 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h5><ul>
+<li><ol>
+<li>安全性：因为 Struct 是用值类型传递的，它们没有引用计数。</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>内存：由于他们没有引用数，他们不会因为循环引用导致内存泄漏。</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>速度：值类型通常来说是以栈的形式分配的，而不是用堆。因此他们比 Class 要快很多，真的很多，Struct的速度为Class的三千七百万倍！</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>拷贝：你有在 Objective-C 里试图过拷贝一个对象吗？你必须选用正确的拷贝类型（深拷贝、浅拷贝），这是非常烦人的，因为每次尝试你都不记得自己上次是怎么写的。 值类型的拷贝则非常轻松！</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>线程安全：值类型是自动线程安全的。无论你从哪个线程去访问你的 Struct ，都非常简单。</li>
+</ol>
+</li>
+</ul>
+<h5 id="不足"><a href="#不足" class="headerlink" title="不足"></a>不足</h5><ul>
+<li><ol>
+<li>Objective-C：当你的项目的代码是 Swift 和 Objective-C 混合开发时，你会发现在 Objective-C 的代码里无法调用 Swift 的 Struct。因为要在 Objective-C 里调用 Swift 代码的话，对象需要继承于 NSObject。</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>继承：继承是面向对象编程的四大支柱之一，这深深地植入了我们的思维方式。当我们可以使用继承时，为什么还要重复地写某一段代码？我很喜欢把我的数据模型设为可继承的，这让我不用给共享一个抽象的类重复 JSON 解析代码，这能让我的模型保持统一。Struct 不能相互继承。</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>NSUserDefaults：<br>我敢打包票大家都会在某些时候对把数据存在 NSUserDefaults 里面感到有罪恶感。这种想法很正常，因为不是每个人都喜欢跟 CoreData 打交道，特别是仅仅要存很少的对象的时候。 技术上这是可行的，但是要用 Struct 实现的话，这还有几个小坑要踩。因此你可能最好还是用 Class 来实现。Struct 不能被序列化成 NSData 对象。</li>
+</ol>
+</li>
+</ul>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><ul>
+<li>默认使用struct</li>
+<li>当你需要继承OC某些类的时候使用class</li>
+<li>当你需要控制唯一性时使用class</li>
+<li><p>使用struct和Protocol 来实现model继承和共享行为</p>
+</li>
+<li><p>使用struct不需要考虑内存泄漏和多线程读写的问题, 因为在传递值的时候他会进行copy</p>
+</li>
+<li>struct存储在stack中, class存储在heap中, struct更快一点</li>
+</ul>
+<p>赋值值语义类型的数据时, 新数据是原数据的拷贝. 而引用类型的数据是原数据的引用拷贝.这一味着你可以在任何地方通过引用覆写原数据. 值语义只能通过改变原数据来改变原数据的值. 在进行选择时, 要考虑该类型是否适合拷贝和倾向于拷贝的类型. 但是要留意值类型中其那套引用类型.</p>
+</div><div class="tags"></div><div class="post-nav"><a class="next" href="/2018/10/23/swift中协议的理解和使用/">swift中协议的理解和使用</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="http://yoursite.com"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/swift/">swift</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/12/24/swift中的struct和class/">swift中的struct和class</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/23/swift中协议的理解和使用/">swift中协议的理解和使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/23/fmdb/">FMDB的分析</a></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2020 <a href="/." rel="nofollow">Run.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
